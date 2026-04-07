@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Missing fields" });
   }
 
-  // 1. SEND EMAIL USING BREVO SMTP
+  // 1. Email via Brevo
   const transporter = nodemailer.createTransport({
     host: "smtp-relay.brevo.com",
     port: 587,
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     console.error("SMTP error:", error);
   }
 
-  // 2. SEND SLACK NOTIFICATION (your existing code)
+  // 2. Slack notification
   try {
     await fetch(process.env.SLACK_WEBHOOK_URL, {
       method: "POST",
