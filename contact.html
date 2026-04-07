@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nova E‑Sports | Helpdesk</title>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #0b0b0b; color: #ffffff; }
+    header { background: #111111; padding: 20px; text-align: center; }
+    nav a { margin: 0 15px; color: #00aaff; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .container { padding: 40px; max-width: 600px; margin: 0 auto; }
+    input, textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 4px; border: 1px solid #333333; background: #1a1a1a; color: #ffffff; }
+    button { padding: 10px 20px; background: #00aaff; border: none; color: #ffffff; cursor: pointer; border-radius: 4px; font-weight: bold; }
+    button:hover { background: #0088cc; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Nova E‑Sports</h1>
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="/tournaments.html">Tournaments</a>
+      <a href="/players.html">Players</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Helpdesk</h2>
+    <form action="/api/ticket" method="POST">
+      <input name="name" placeholder="Your Name" required>
+      <input name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="How can we help?" required></textarea>
+      <button type="submit">Submit Ticket</button>
+    </form>
+  </div>
+</body>
+</html>
