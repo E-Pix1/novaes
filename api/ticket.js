@@ -5,9 +5,10 @@ export default async function handler(req, res) {
 
   const { name, email, message } = req.body || {};
 
-  // Build the Slack message
-  const slackMessage = {
-    text: `🆘 *New Nova E‑Sports Helpdesk Ticket*`,
+  const webhook = process.env.SLACK_WEBHOOK_URL;
+
+  const payload = {
+    text: "🆘 *New Nova E‑Sports Helpdesk Ticket*",
     attachments: [
       {
         color: "#00aaff",
@@ -16,23 +17,22 @@ export default async function handler(req, res) {
           { title: "Email", value: email, short: true },
           { title: "Message", value: message, short: false }
         ],
-        footer: "NovaES Bot",
+        footer: "Nova ES Helpdesk Bot",
         ts: Math.floor(Date.now() / 1000)
       }
     ]
   };
 
   try {
-    // Send to Slack
-    await fetch(process.env.SLACK_WEBHOOK_URL, {
+    await fetch(webhook, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(slackMessage)
+      body: JSON.stringify(payload)
     });
 
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error("Slack error:", err);
+    console.error("Slack webhook error:", err);
     return res.status(500).json({ success: false, error: "Slack webhook failed" });
   }
 }
